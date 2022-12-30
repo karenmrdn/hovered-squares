@@ -5,8 +5,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.emerald,
-        secondary: colors.sky,
+        primary: colors.blue,
+        secondary: "#31373d",
+      },
+      gridTemplateColumns: {
+        "squares-board": "auto 1fr",
+        25: "repeat(25, minmax(0, 1fr))",
+      },
+      spacing: {
+        1.5: "0.4rem",
       },
     },
   },
