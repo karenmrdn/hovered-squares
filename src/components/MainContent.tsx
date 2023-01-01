@@ -46,21 +46,21 @@ const MainContent = () => {
   };
 
   return (
-    <main className="mx-auto h-screen max-w-3xl p-4">
+    <main className="mx-auto min-h-screen70 max-w-3xl p-4">
       <h1 className="mb-4 text-xl font-bold">Hover over squares!</h1>
       <div className="mb-4 flex items-center gap-4">
         <ReactSelect value={selectedOption} options={options} onChange={handleChange} />
         <Button title="Start" />
       </div>
       <div className="grid grid-cols-squares-board items-start gap-4">
-        <div className={`grid grid-cols-${FIELD} border-l border-b border-black`}>
+        <div className="grid grid-cols-5 border-l border-b border-black">
           {arrOfSquares.map((_, index) => (
             <div
-              className={`h-12 w-12 border-r border-t border-black ${hoveredSquares.includes(index) ? "bg-primary-500" : ""}`}
+              className={`h-12 w-12 border-r border-t border-black transition-colors ease-popup ${
+                hoveredSquares.includes(index) ? "bg-primary-500" : ""
+              }`}
               onMouseEnter={() => handleMouseEnter(index)}
-            >
-              {index}
-            </div>
+            />
           ))}
         </div>
         <div>

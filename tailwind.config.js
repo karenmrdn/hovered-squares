@@ -15,6 +15,12 @@ module.exports = {
       spacing: {
         1.5: "0.4rem",
       },
+      transitionTimingFunction: {
+        popup: "cubic-bezier(0.24,0.9,0.47,0.92) ",
+      },
+      minHeight: {
+        screen70: "70vh",
+      },
     },
   },
   plugins: [],
