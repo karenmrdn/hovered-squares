@@ -5,7 +5,7 @@
     "prefer-const": "warn",
     "quotes": ["error", "double"],
     "jsx-quotes": ["error", "prefer-double"],
-    "max-len": ["error", { "code": 135 }],
+    "max-len": ["warn", { "code": 150 }],
     "comma-dangle": ["error", "only-multiline"],
     "semi": ["error", "always"],
     "indent": "off"
