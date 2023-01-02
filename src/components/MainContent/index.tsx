@@ -3,7 +3,8 @@ import ReactSelect, { ActionMeta, SingleValue } from "react-select";
 
 import { SelectOption } from "models";
 
-import Button from "./Button";
+import { Button } from "../Button";
+import { Square } from "./Square";
 
 const options = [
   { value: "chocolate", label: "Chocolate" },
@@ -15,7 +16,7 @@ const FIELD = 5;
 
 // TODO: https://react-select.com/async
 
-const MainContent = () => {
+export const MainContent = () => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
   const [hoveredSquares, setHoveredSquares] = useState<number[]>([]);
   const [history, setHistory] = useState<string[]>([]);
@@ -46,7 +47,7 @@ const MainContent = () => {
   };
 
   return (
-    <main className="mx-auto min-h-screen70 max-w-3xl p-4">
+    <main className="mx-auto min-h-screen70 max-w-3xl px-4">
       <h1 className="mb-4 text-xl font-bold">Hover over squares!</h1>
       <div className="mb-4 flex items-center gap-4">
         <ReactSelect value={selectedOption} options={options} onChange={handleChange} />
@@ -55,12 +56,7 @@ const MainContent = () => {
       <div className="grid grid-cols-squares-board items-start gap-4">
         <div className="grid grid-cols-5 border-l border-b border-black">
           {arrOfSquares.map((_, index) => (
-            <div
-              className={`h-12 w-12 border-r border-t border-black transition-colors ease-popup ${
-                hoveredSquares.includes(index) ? "bg-primary-500" : ""
-              }`}
-              onMouseEnter={() => handleMouseEnter(index)}
-            />
+            <Square isHovered={hoveredSquares.includes(index)} onMouseEnter={() => handleMouseEnter(index)} />
           ))}
         </div>
         <div>
@@ -79,5 +75,3 @@ const MainContent = () => {
     </main>
   );
 };
-
-export default MainContent;

@@ -1,8 +1,8 @@
 import LogoImg from "assets/img/logo192.png";
 
-const Header = () => {
+export const Header = () => {
   return (
-    <header className="bg-primary-500 text-white shadow-md">
+    <header className="mb-8 bg-primary-500 text-white shadow-md">
       <div className="mx-auto flex max-w-3xl justify-between p-4">
         <div className="flex items-center gap-2">
           <img src={LogoImg} alt="Logo" width={25} />
@@ -13,5 +13,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;
