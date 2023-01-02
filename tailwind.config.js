@@ -21,6 +21,21 @@ module.exports = {
       minHeight: {
         screen70: "70vh",
       },
+      keyframes: {
+        "slide-in": {
+          from: {
+            transform: "translateX(100%)",
+            opacity: 0,
+          },
+          to: {
+            transform: "translateX(0%)",
+            opacity: 1,
+          },
+        },
+      },
+      animation: {
+        "slide-in": "slide-in 500ms ease-out",
+      },
     },
   },
   plugins: [],
