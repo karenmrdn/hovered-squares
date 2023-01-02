@@ -20,6 +20,11 @@ export const MainContent = () => {
   const selectedDiffLvlValue = selectedDiffLvl?.value || 5;
 
   useEffect(() => {
+    setHistory([]);
+    setHoveredSquares([]);
+  }, [selectedDiffLvl]);
+
+  useEffect(() => {
     getDifficultyLevels().then((levels) => {
       if (levels) {
         setDifficultyLevels(levels);
@@ -62,20 +67,35 @@ export const MainContent = () => {
       <div className="grid grid-cols-squares-board gap-6">
         <div>
           <div className="mb-4 flex items-center gap-4">
-            <ReactSelect value={selectedDiffLvl} options={diffLvlOptions} onChange={handleChange} />
+            <ReactSelect
+              value={selectedDiffLvl}
+              options={diffLvlOptions}
+              onChange={handleChange}
+              styles={{
+                control: (baseStyles) => ({
+                  ...baseStyles,
+                  minWidth: "120px",
+                }),
+              }}
+            />
             <Button title="Start" />
           </div>
           <div className="grid grid-cols-squares-board items-start gap-4">
-            <div className="grid grid-cols-5 border-l border-b border-black">
+            <div className={`grid grid-cols-${selectedDiffLvlValue} border-l border-b border-black`}>
               {arrOfSquares.map((_, index) => (
-                <Square key={index} isHovered={hoveredSquares.includes(index)} onMouseEnter={() => handleMouseEnter(index)} />
+                <Square
+                  key={index}
+                  isHovered={hoveredSquares.includes(index)}
+                  onMouseEnter={() => handleMouseEnter(index)}
+                  selectedDiffLvlValue={selectedDiffLvlValue}
+                />
               ))}
             </div>
           </div>
         </div>
         <div className="max-w-xs">
           <h2 className="mb-2 font-bold">History</h2>
-          <div className="flex max-h-64 flex-col gap-2 overflow-auto">
+          <div className={`flex max-h-${selectedDiffLvlValue}-squares flex-col gap-2 overflow-auto`}>
             {history.length > 0
               ? history.map((historyItem) => (
                   <p
