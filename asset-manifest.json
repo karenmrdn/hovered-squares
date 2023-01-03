@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/hovered-squares/static/css/main.fbcdc4fd.css",
-    "main.js": "/hovered-squares/static/js/main.6efca126.js",
+    "main.css": "/hovered-squares/static/css/main.aeae5caa.css",
+    "main.js": "/hovered-squares/static/js/main.fa2390c6.js",
     "index.html": "/hovered-squares/index.html",
-    "main.fbcdc4fd.css.map": "/hovered-squares/static/css/main.fbcdc4fd.css.map",
-    "main.6efca126.js.map": "/hovered-squares/static/js/main.6efca126.js.map"
+    "main.aeae5caa.css.map": "/hovered-squares/static/css/main.aeae5caa.css.map",
+    "main.fa2390c6.js.map": "/hovered-squares/static/js/main.fa2390c6.js.map"
   },
   "entrypoints": [
-    "static/css/main.fbcdc4fd.css",
-    "static/js/main.6efca126.js"
+    "static/css/main.aeae5caa.css",
+    "static/js/main.fa2390c6.js"
   ]
 }
