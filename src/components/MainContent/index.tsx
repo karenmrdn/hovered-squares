@@ -10,7 +10,7 @@ import { History } from "./History";
 
 export const MainContent = () => {
   const startBtnRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
-  const [hoveredSquares, setHoveredSquares] = useState<number[]>([]);
+  const [hoveredSquares, setHoveredSquares] = useState<{ [key: string]: boolean }>({});
   const [history, setHistory] = useState<{ id: string; value: string }[]>([]);
   const { isDiffLvlsLoading, diffLvlOptions, selectedDiffLvl, setSelectedDiffLvl, setCurrDiffLvl, currDiffLvlValue } =
     useDifficultyLvls();
@@ -20,7 +20,7 @@ export const MainContent = () => {
   const handleStart = () => {
     setCurrDiffLvl(selectedDiffLvl);
     setHistory([]);
-    setHoveredSquares([]);
+    setHoveredSquares({});
   };
 
   const handleDiffLvlChange = (newValue: SingleValue<SelectOption>, actionMeta: ActionMeta<SelectOption>) => {
@@ -28,7 +28,7 @@ export const MainContent = () => {
     startBtnRef.current.focus();
   };
 
-  const handleMouseEnter = (index: number) => {
+  const handleMouseEnter = (index: number, isHovered: boolean) => {
     const hoveredSquareRow = Math.ceil((index + 1) / currDiffLvlValue);
     const hoveredSquareCol = index - currDiffLvlValue * (hoveredSquareRow - 1) + 1;
     setHistory((prev) => [
@@ -37,16 +37,8 @@ export const MainContent = () => {
     ]);
 
     setHoveredSquares((prev) => {
-      const prevCopy = [...prev];
-      const currentSquareIndexInArr = prevCopy.indexOf(index);
-
-      if (currentSquareIndexInArr === -1) {
-        prevCopy.push(index);
-      } else {
-        prevCopy.splice(currentSquareIndexInArr, 1);
-      }
-
-      return prevCopy;
+      prev[index] = !isHovered;
+      return prev;
     });
   };
 
@@ -78,8 +70,8 @@ export const MainContent = () => {
               {arrOfSquares.map((_, index) => (
                 <Square
                   key={index}
-                  isHovered={hoveredSquares.includes(index)}
-                  onMouseEnter={() => handleMouseEnter(index)}
+                  isHovered={hoveredSquares[index]}
+                  onMouseEnter={() => handleMouseEnter(index, hoveredSquares[index])}
                   selectedDiffLvlValue={currDiffLvlValue}
                 />
               ))}
