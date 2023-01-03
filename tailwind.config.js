@@ -1,14 +1,9 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  safelist: [
-    { pattern: /grid-cols-(5|15|25)/ },
-    { pattern: /{h|w}-(5|15|25)/ },
-    { pattern: /h-(5|15|25)-squares/ },
-    { pattern: /w-(5|15|25)-squares/ },
-    { pattern: /max-h-(5|15|25)-squares/ },
-  ],
+  safelist: [{ pattern: /grid-cols-(5|15|25)/ }, { pattern: /(h|w)-(5|15|25)-squares/ }, { pattern: /max-h-(5|15|25)-squares/ }],
   theme: {
     extend: {
       colors: {
@@ -19,6 +14,7 @@ module.exports = {
         "squares-board": "auto 1fr",
         15: "repeat(15, minmax(0, 1fr))",
         25: "repeat(25, minmax(0, 1fr))",
+        "1-auto": "auto",
       },
       spacing: {
         1.5: "0.4rem",
@@ -33,9 +29,6 @@ module.exports = {
         "15-squares": "1.75rem",
         "25-squares": "1.25rem",
       },
-      transitionTimingFunction: {
-        popup: "cubic-bezier(0.24,0.9,0.47,0.92)",
-      },
       minHeight: {
         screen70: "70vh",
       },
@@ -43,6 +36,9 @@ module.exports = {
         "5-squares": "16rem",
         "15-squares": "27rem",
         "25-squares": "32rem",
+      },
+      transitionTimingFunction: {
+        popup: "cubic-bezier(0.24,0.9,0.47,0.92)",
       },
       keyframes: {
         "slide-in": {
@@ -58,6 +54,14 @@ module.exports = {
       },
       animation: {
         "slide-in": "slide-in 500ms ease-out",
+      },
+      screens: {
+        "2xl": { max: "1535px" },
+        xl: { max: "1279px" },
+        lg: { max: "1023px" },
+        md: { max: "767px" },
+        sm: { max: "639px" },
+        xs: { max: "400px" },
       },
     },
   },

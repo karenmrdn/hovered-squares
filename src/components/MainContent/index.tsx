@@ -43,9 +43,9 @@ export const MainContent = () => {
   };
 
   return (
-    <main className="mx-auto min-h-screen70 max-w-3xl px-4">
+    <main className="mx-auto min-h-screen70 max-w-3xl px-4 ">
       <h1 className="mb-4 text-xl font-bold">Hover over squares!</h1>
-      <div className="grid grid-cols-squares-board gap-6">
+      <div className="grid grid-cols-squares-board gap-6 sm:grid-cols-1">
         <div>
           <div className="mb-4 flex gap-4">
             {!isDiffLvlsLoading ? (
@@ -65,7 +65,7 @@ export const MainContent = () => {
             )}
             <Button ref={startBtnRef} title="Start" onClick={handleStart} />
           </div>
-          <div className={`grid grid-cols-${currDiffLvlValue} border-l border-b border-black`}>
+          <div className={`grid grid-cols-${currDiffLvlValue} w-fit border-l border-b border-black`}>
             {arrOfSquares.map((_, index) => (
               <Square
                 key={index}
