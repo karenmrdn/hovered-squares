@@ -65,17 +65,15 @@ export const MainContent = () => {
             )}
             <Button ref={startBtnRef} title="Start" onClick={handleStart} />
           </div>
-          <div className="grid grid-cols-squares-board items-start gap-4">
-            <div className={`grid grid-cols-${currDiffLvlValue} border-l border-b border-black`}>
-              {arrOfSquares.map((_, index) => (
-                <Square
-                  key={index}
-                  isHovered={hoveredSquares[index]}
-                  onMouseEnter={() => handleMouseEnter(index, hoveredSquares[index])}
-                  selectedDiffLvlValue={currDiffLvlValue}
-                />
-              ))}
-            </div>
+          <div className={`grid grid-cols-${currDiffLvlValue} border-l border-b border-black`}>
+            {arrOfSquares.map((_, index) => (
+              <Square
+                key={index}
+                isHovered={hoveredSquares[index]}
+                onMouseEnter={() => handleMouseEnter(index, hoveredSquares[index])}
+                selectedDiffLvlValue={currDiffLvlValue}
+              />
+            ))}
           </div>
         </div>
         <History currDiffLvlValue={currDiffLvlValue} history={history} />
