@@ -12,6 +12,7 @@ apiClient.interceptors.response.use(
   },
   (error) => {
     toast.error((error as AxiosError)?.message ?? "Oops... Unexpected error :(");
+    console.error(error);
   }
 );
 
