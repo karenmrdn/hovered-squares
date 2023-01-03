@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef } from "react";
 import ReactSelect, { ActionMeta, SingleValue } from "react-select";
 
-import { SelectOption } from "models";
+import { HistoryItem, SelectOption } from "models";
 import { useDifficultyLvls } from "hooks";
 import { Button } from "components/Button";
 
@@ -11,7 +11,7 @@ import { History } from "./History";
 export const MainContent = () => {
   const startBtnRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
   const [hoveredSquares, setHoveredSquares] = useState<{ [key: string]: boolean }>({});
-  const [history, setHistory] = useState<{ id: string; value: string }[]>([]);
+  const [history, setHistory] = useState<HistoryItem[]>([]);
   const { isDiffLvlsLoading, diffLvlOptions, selectedDiffLvl, setSelectedDiffLvl, setCurrDiffLvl, currDiffLvlValue } =
     useDifficultyLvls();
 

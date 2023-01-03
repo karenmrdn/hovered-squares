@@ -7,3 +7,5 @@ export type DifficultyLevel = {
   name: string;
   field: number;
 };
+
+export type HistoryItem = { id: string; value: string };
