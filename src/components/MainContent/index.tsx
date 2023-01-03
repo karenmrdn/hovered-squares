@@ -12,7 +12,8 @@ export const MainContent = () => {
   const startBtnRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
   const [hoveredSquares, setHoveredSquares] = useState<number[]>([]);
   const [history, setHistory] = useState<{ id: string; value: string }[]>([]);
-  const { diffLvlOptions, selectedDiffLvl, setSelectedDiffLvl, setCurrDiffLvl, currDiffLvlValue } = useDifficultyLvls();
+  const { isDiffLvlsLoading, diffLvlOptions, selectedDiffLvl, setSelectedDiffLvl, setCurrDiffLvl, currDiffLvlValue } =
+    useDifficultyLvls();
 
   const arrOfSquares = useMemo(() => [...new Array(currDiffLvlValue * currDiffLvlValue)], [currDiffLvlValue]);
 
@@ -55,17 +56,21 @@ export const MainContent = () => {
       <div className="grid grid-cols-squares-board gap-6">
         <div>
           <div className="mb-4 flex gap-4">
-            <ReactSelect
-              value={selectedDiffLvl}
-              options={diffLvlOptions}
-              onChange={handleDiffLvlChange}
-              styles={{
-                control: (baseStyles) => ({
-                  ...baseStyles,
-                  minWidth: "120px",
-                }),
-              }}
-            />
+            {!isDiffLvlsLoading ? (
+              <ReactSelect
+                value={selectedDiffLvl}
+                options={diffLvlOptions}
+                onChange={handleDiffLvlChange}
+                styles={{
+                  control: (baseStyles) => ({
+                    ...baseStyles,
+                    minWidth: "120px",
+                  }),
+                }}
+              />
+            ) : (
+              <div className="min-w-[120px] animate-pulse rounded bg-gray-300 opacity-70" />
+            )}
             <Button ref={startBtnRef} title="Start" onClick={handleStart} />
           </div>
           <div className="grid grid-cols-squares-board items-start gap-4">

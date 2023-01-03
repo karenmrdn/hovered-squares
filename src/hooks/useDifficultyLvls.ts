@@ -4,6 +4,7 @@ import { getDifficultyLevels } from "api";
 import { DifficultyLevel } from "models";
 
 export const useDifficultyLvls = () => {
+  const [isDiffLvlsLoading, setIsDiffLvlsLoading] = useState(true);
   const [difficultyLevels, setDifficultyLevels] = useState<DifficultyLevel[]>([]);
   const diffLvlOptions = useMemo(
     () => difficultyLevels.map((diffLvlItem) => ({ value: diffLvlItem.field, label: diffLvlItem.name })),
@@ -14,15 +15,20 @@ export const useDifficultyLvls = () => {
   const currDiffLvlValue = currDiffLvl?.value || 5;
 
   useEffect(() => {
-    getDifficultyLevels().then((levels) => {
-      if (levels) {
-        setDifficultyLevels(levels);
-        setSelectedDiffLvl({ value: levels[0].field, label: levels[0].name });
-      }
-    });
+    getDifficultyLevels()
+      .then((levels) => {
+        if (levels) {
+          setDifficultyLevels(levels);
+          setSelectedDiffLvl({ value: levels[0].field, label: levels[0].name });
+        }
+      })
+      .finally(() => {
+        setIsDiffLvlsLoading(false);
+      });
   }, []);
 
   return {
+    isDiffLvlsLoading,
     diffLvlOptions,
     selectedDiffLvl,
     setSelectedDiffLvl,
